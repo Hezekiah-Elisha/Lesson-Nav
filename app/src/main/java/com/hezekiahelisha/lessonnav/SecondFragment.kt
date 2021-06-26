@@ -8,27 +8,37 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.hezekiahelisha.lessonnav.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {
 
     val args:SecondFragmentArgs by navArgs()
+
+    private var _binding : FragmentSecondBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_second, container, false)
+        _binding = FragmentSecondBinding.inflate(inflater, container, false)
 
         val myNumber = args.number
 
-        view.findViewById<TextView>(R.id.secondTextView).text = myNumber.toString()
+        binding.secondTextView.text = myNumber.toString()
 
-        view.findViewById<TextView>(R.id.secondTextView).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_secondFragment_to_firstFragment)
+        binding.secondTextView.setOnClickListener {
+            Navigation.findNavController(binding.root).navigate(R.id.action_secondFragment_to_firstFragment)
         }
 
-        return view
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        _binding = null
     }
 
 }
