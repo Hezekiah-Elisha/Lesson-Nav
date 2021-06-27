@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
